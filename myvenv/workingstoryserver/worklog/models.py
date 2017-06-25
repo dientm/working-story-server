@@ -1,3 +1,33 @@
 from django.db import models
+from django.contrib.auth.models import User
+import datetime
+# Create your dto here.
 
-# Create your models here.
+class WorkLog(models.Model):
+    ACTION_CHOICES = (
+        (u'1', u'Start Working'),
+        (u'2', u'Finish Working'),
+        (u'3', u'Annual Leave'),
+        (u'4', u'Public Holiday'),
+    )
+    user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+    action = models.CharField(max_length=1, choices=ACTION_CHOICES)
+    action_on = models.DateTimeField(auto_now_add =True)
+    location = models.CharField(max_length=255, blank=True)
+    report = models.TextField(blank=True)
+
+
+class LocalBeacon(models.Model):
+    uuid = models.CharField(max_length=255, primary_key=True)
+    name = models.CharField(max_length=255, blank=True)
+    major = models.CharField(max_length=5, blank=True)
+    minor = models.CharField(max_length=5, blank=True)
+    location = models.CharField(max_length=255, blank=False)
+
+    def as_json(self):
+        return dict(
+            uuid=self.uuid,
+            location=self.location,
+            name=self.name,
+            major=self.major,
+            minor=self.minor)

@@ -3,7 +3,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
 
 
-# Create your models here.
+# Create your dto here.
 
 
 class Employee(models.Model):

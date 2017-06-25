@@ -1,12 +1,11 @@
-from django.shortcuts import render
-from django.core import serializers
-
-from django.contrib.auth import authenticate, login
-from django.http import HttpResponse
-# Create your views here.
-from django.views.decorators.csrf import csrf_exempt
 import json
 
+from django.contrib.auth import authenticate, login
+from django.core import serializers
+from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_exempt
+
+from account.dto.acount import Account
 @csrf_exempt
 def _login(request):
     if request.method == 'POST':
@@ -19,9 +18,10 @@ def _login(request):
         if user is not None:
             login(request, user)
             r['statusCode'] = 200
-            user_obj = serializers.serialize('json', [user, ])
-            r['user'] = user_obj
-
+            acc = Account(user)
+            # user_obj = serializers.serialize('json', [acc, ])
+            r['user'] = acc.toJSON()
+            print(json.dumps(r))
             return HttpResponse(json.dumps(r))
         else:
             return HttpResponse({"statusCode": 200})

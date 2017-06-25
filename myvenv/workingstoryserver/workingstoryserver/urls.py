@@ -18,7 +18,9 @@ from django.contrib import admin
 from account import urls
 
 
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^account/', include("account.urls", namespace="account")),
+    url(r'^worklog/', include("worklog.urls", namespace="worklog")),
 ]
