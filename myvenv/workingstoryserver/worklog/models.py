@@ -16,6 +16,12 @@ class WorkLog(models.Model):
     location = models.CharField(max_length=255, blank=True)
     report = models.TextField(blank=True)
 
+    # def __init__(self, user, action, location, report):
+    #     self.user = user
+    #     self.action = action
+    #     self.action_on = action_on
+    #     self.location = location
+    #     self.report = report
 
 class LocalBeacon(models.Model):
     uuid = models.CharField(max_length=255, primary_key=True)
