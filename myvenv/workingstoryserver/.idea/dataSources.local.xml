@@ -5,13 +5,11 @@
       <database-info product="SQLite" version="3.16.1" jdbc-version="2.1" driver-name="SQLiteJDBC" driver-version="native" />
       <case-sensitivity plain-identifiers="mixed" quoted-identifiers="mixed" />
       <auth-required>false</auth-required>
-      <introspection-schemas>*:</introspection-schemas>
     </data-source>
     <data-source name="Django default2" uuid="65e30e0c-e0d5-4804-a9c5-3d2e1bf423f1">
       <database-info product="SQLite" version="3.16.1" jdbc-version="2.1" driver-name="SQLiteJDBC" driver-version="native" />
       <case-sensitivity plain-identifiers="mixed" quoted-identifiers="mixed" />
       <auth-required>false</auth-required>
-      <introspection-schemas>*:</introspection-schemas>
     </data-source>
   </component>
 </project>

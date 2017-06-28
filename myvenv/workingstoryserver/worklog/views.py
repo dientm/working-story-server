@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.utils.datetime_safe import strftime
 from django.views.decorators.csrf import csrf_exempt
 import json
 from django.http import HttpResponse
@@ -89,3 +90,16 @@ def get_beacon_configuration(request):
         r['beacons'] = results
         return HttpResponse(json.dumps(r))
 
+
+def get_activity(request):
+    r = []
+    d = {}
+    last_ten = WorkLog.objects.all().order_by('-id')[:10]
+    last_ten_in_ascending_order = reversed(last_ten)
+    for act in last_ten_in_ascending_order:
+        d['name'] = act.user.first_name
+        d['action'] = act.get_action_display()
+        d['action_on'] = act.action_on.strftime('%Y-%m-%d %H:%M:%S')
+        d['note'] = act.report
+        r.append(d)
+    return HttpResponse(json.dumps(r))
