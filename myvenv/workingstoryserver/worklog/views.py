@@ -93,13 +93,13 @@ def get_beacon_configuration(request):
 
 def get_activity(request):
     r = []
-    d = {}
-    last_ten = WorkLog.objects.all().order_by('-id')[:10]
-    last_ten_in_ascending_order = reversed(last_ten)
-    for act in last_ten_in_ascending_order:
-        d['name'] = act.user.first_name
-        d['action'] = act.get_action_display()
-        d['action_on'] = act.action_on.strftime('%Y-%m-%d %H:%M:%S')
-        d['note'] = act.report
-        r.append(d)
+    last_ten = WorkLog.objects.all().order_by('-id')[:5]
+    # son_string = json.dumps([ob.__dict__ for ob in last_ten])
+    # last_ten_in_ascending_order = reversed(last_ten)
+    for act in last_ten:
+        r.append({'name': act.user.first_name,
+                  'action': act.get_action_display(),
+                  'action_on': act.action_on.strftime('%Y-%m-%d %H:%M:%S'),
+                  'note': act.report})
+
     return HttpResponse(json.dumps(r))
