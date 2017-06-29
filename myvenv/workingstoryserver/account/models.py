@@ -23,3 +23,8 @@ class Employee(models.Model):
     def get_email(self):
         email = '%s' % self.user.email
         return email.strip()
+
+
+class AvatarModel(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    avatar = models.ImageField(upload_to='pic_folder/', default='pic_folder/None/no-img.jpg')

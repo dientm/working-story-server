@@ -5,10 +5,10 @@ import datetime
 
 class WorkLog(models.Model):
     ACTION_CHOICES = (
-        (u'1', u'Start Working'),
-        (u'2', u'Finish Working'),
-        (u'3', u'Annual Leave'),
-        (u'4', u'Public Holiday'),
+        (u'1', u'start working'),
+        (u'2', u'finish working'),
+        (u'3', u'annual leave'),
+        (u'4', u'public holiday'),
     )
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     action = models.CharField(max_length=1, choices=ACTION_CHOICES)

@@ -1,0 +1,8 @@
+<form action="{% url 'account:upload_avatar' %}" method="post" enctype="multipart/form-data">{% csrf_token %}
+    <p>
+        <input id="id_image" type="file" class="" name="image">
+        <input id="username" type="text" class="" name="username">
+
+    </p>
+    <input type="submit" value="Submit" />
+</form>
