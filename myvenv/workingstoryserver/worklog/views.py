@@ -8,6 +8,10 @@ from django.core import serializers
 
 from worklog.dto.BeaconConfiguration import BeaconConfiguration
 from .models import WorkLog, LocalBeacon
+
+from django.utils.timezone import activate
+from workingstoryserver import settings
+activate(settings.TIME_ZONE)
 # Create your views here.
 
 
